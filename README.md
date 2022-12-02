@@ -18,7 +18,7 @@ This setup assumes you have some familiarity with AWS or aren't afraid to play a
 You will need:
 * An AWS account
 * A Twilio API key + credits
-* A lambda layer that contains the requests library
+* A lambda layer that contains the `requests` and `twilio` libraries
   * If you don't know how to make a layer, or want instructions for doing it via the CLI, see below.
   
 
