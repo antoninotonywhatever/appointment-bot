@@ -9,7 +9,9 @@ This can be used to monitor websites for a variety of reasons. You might be look
 
 Bots that scoop up appointments or buy up tickets are lame as fuck and make the world worse, don't build those. 
 
-# Real set up
+# Lambda set up + scheduling
+
+This setup assumes you have some familiarity with AWS or aren't afraid to play around and test things out. 
 
 **Tl;dr: Set up two lambdas for each python script. Trigger the website checker function via an eventbridge schedule, and give it permission to execute other lambdas.**
 
@@ -20,7 +22,13 @@ You will need:
   * If you don't know how to make a layer, or want instructions for doing it via the CLI, see below.
   
 
-1. Create a function
+1. Create a lambda function using python 3.9, add the `alert_function.py` code, and apply a layer containing `twilio` to it
+2. Input your own API Key + messaging into the script and deploy it
+3. Create another lambda function using python 3.9, add the `checker_function.py` code, and apply a layer containing `requests` to it
+4. Add the first lambda function as a destination for this one. You don't have to properly configure this, it's just a quick way to grant this function permission to invoke other functions
+5. Go to Eventbridge > Schedules and create a schedule that targets the `chekcer_function.py` function on a schedule that makes sense. I'd recommend 1 hour with +/- 15 minutes of randomness, which the GUI lets you add in
+
+And with that, you're done. You'll definitely want to check to make sure things work, but that'll do it. 
 
 
 
@@ -41,7 +49,8 @@ What we'll do here: Spin up a python venv, make a directory and download the pac
   * `mkdir my_layer_name`
   * `cd my_layer_name`
   * `pip install requests -t .`
-  * cd ..
+  * `pip install twilio -t .`
+  * `cd ..`
 * Cool, all of the stuff we need is in the subdirectory, so let's zip it up, make a bucket, put it in that bucket, and turn it into a layer. You'll need to make your own S3 bucket name. 
   * `zip -r my_layer_name.zip my_layer_name`
   * `aws s3api create-bucket \
@@ -49,8 +58,8 @@ What we'll do here: Spin up a python venv, make a directory and download the pac
     --region us-east-1`
   * `aws s3 cp lazy_layer.zip s3://a-cool-and-unique-bucket-name/`
   * `aws lambda publish-layer-version \
-    --layer-name requests_layer \
-    --description "Python Layer for requests library" \
+    --layer-name twilio_requests_layer \
+    --description "Python Layer for the requests and twilio libraries" \
     --license-info "MIT" \
     --content S3Bucket=a-cool-and-unique-bucket-name,S3Key=my_layer_name.zip \
     --compatible-runtimes python3.9`
