@@ -7,7 +7,7 @@ This can be used to monitor websites for a variety of reasons. You might be look
 
 **Limitations:** This bot is very simple, and assumes the target site has some kind of static element to it. It can only handle basic logins, and can't handle MFA. **Most importantly, by design it doesn't take any direct action on its findings.** 
 
-Bots that scoop up appointments or buy up tickets are lame as fuck and make the world worse, don't build those. 
+Bots that scoop up appointments or buy out tickets are lame as fuck and make the world worse, don't build those. 
 
 # Lambda set up + scheduling
 
