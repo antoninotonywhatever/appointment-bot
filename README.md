@@ -1,5 +1,5 @@
 # appointment-bot
-Ethical bot that checks for website changes (like appointments or products being available) and alerts you when it notices one.
+Ethical bot that checks for website changes (like appointments or products being available) and alerts you via SMS when it notices one.
 
 **tl;dr: This repo has two lambda functions in it. One checks a website and reports if it has changed from a user-defined state. The other function sends an SMS to the user when triggered.**
 
