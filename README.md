@@ -28,7 +28,7 @@ You will need:
 4. Add the first lambda function as a destination for this one. You don't have to properly configure this, it's just a quick way to grant this function permission to invoke other functions
 5. Go to Eventbridge > Schedules and create a schedule that targets the `chekcer_function.py` function on a schedule that makes sense. I'd recommend 1 hour with +/- 15 minutes of randomness, which the GUI lets you add in
 
-And with that, you're done. You'll definitely want to check to make sure things work, but that'll do it. 
+That's largely it. All that's left is to customize the scripts with your own credentials and targets. There are comments within the scripts that describe what to do.
 
 
 
