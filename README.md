@@ -32,10 +32,10 @@ That's largely it. All that's left is to customize the scripts with your own cre
 
 
 
-# Making a lambda layer from the AWS CLI
+# Making a lambda layer from AWS Cloudshell
 
 
-The below instructions let you build a lambda function entirely from the AWS CLI. This can save the same / hassle of doing it on your local machine. Someone will probably say you should do this as two separate layers. Maybe you should. This is the lazy way. 
+The below instructions let you build a lambda function entirely from the AWS CLI. This can save the hassle of doing it on your local machine. Someone will probably say you should do this as two separate layers. Maybe you should. This is the lazy way. 
 
 What we'll do here: Spin up a python venv, make a directory and download the packages we need there, zip up that folder, make an S3 bucket, move the zip to that S3 bucket, and then make a lambda layer out of the zip in that S3 bucket. 
 
